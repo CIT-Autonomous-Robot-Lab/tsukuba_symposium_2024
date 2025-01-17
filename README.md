@@ -30,5 +30,5 @@ make clean
 
 ## 締め切りについて
 
-2024/1/31締切  
+2025/1/31締切  
 [第18回つくばチャレンジシンポジウム](https://tsukubachallenge.jp/2024/about/symposium)

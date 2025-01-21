@@ -61,18 +61,13 @@
 5章では結言を述べる。
 
 \section{各チームのロボットの構成}
-
 各チームのロボットの外観を図\ref{fig:robot}に示す。
 いずれも、アールティ社製の既製品である
-Raspberry Pi Cat\cite{RTshop}がベースになっている。
-もともとのRaspberry Pi Catには全面の保護カバーが
-ないが、いずれのチームも図のように3Dプリンターで
-カバーを作成し、取り付けて参加した。
-また、レギュレーションの関係で、
-アルミフレームで台車の持ち手のような構造物を組み、
-その上に非常停止ボタンを取り付けた。
-
-
+Raspberry Pi Cat\cite{RTshop}を改造したものである。
+メンテナンス性と搭載量の向上のため、
+元々のRaspberry Pi Catの外装を大幅に変更した。
+元々搭載されているモータや電源回路、
+Raspberry Pi 4 Model Bなどの電気装備はそのまま使用している。
 
 計算機については、ノートPCを各ロボットに搭載して使用した。
 昨年は、1チームが計算機としてRaspberry Pi 4 Model Bのみを
@@ -84,7 +79,7 @@ Raspberry Pi上でROS 2を実行するための
 この場合、Raspberry Pi Catには、
 ノートPCと制御用のRaspberry Piの2台の計算機が搭載されることとなる。
 センサ構成としては、各チームの機体に外界センサとして
-2次元LiDAR、3次元LiDAR、内界センサとしてIMUを搭載した。
+3次元LiDAR、内界センサとしてIMUを搭載した。
 
 % \begin{figure}[H]
 %   \begin{minipage}[b]{0.48\columnwidth}

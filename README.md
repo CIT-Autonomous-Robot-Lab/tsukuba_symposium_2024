@@ -30,7 +30,7 @@ make clean
 
 ## TeXファイルの構成について
 - main.tex
-    - チームの共通事項と以下のTeXファイルを読み込んで統合するファイル
+    - チームの共通事項の記述と以下のTeXファイルを読み込んで統合をするファイル
 - robot_mugimaru.tex
     - むぎまるチームのロボットの構成を書くファイル
 - robot_kinako.tex

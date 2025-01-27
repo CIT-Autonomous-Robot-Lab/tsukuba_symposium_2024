@@ -104,35 +104,27 @@ Raspberry Piで車体の制御を行っている。
 内界センサとしては、RT社製のIMUセンサモジュール（RT-USB-9axisIMU2）と
 Raspberry Pi Catに元から搭載されているエンコーダを使用している。
 
-% \begin{figure}[H]
-%   \begin{minipage}[b]{0.48\columnwidth}
-%     \centering
-%     \includegraphics[width=1.0\linewidth]{figs/tuna_robot.pdf}
-%     \caption{ツナチームの機体}
-%     \label{tuna}
-%   \end{minipage}
-%   \hspace{0.04\columnwidth} % ここで隙間作成
-%   \begin{minipage}[b]{0.48\columnwidth}
-%     \centering
-%     \includegraphics[width=1.0\linewidth]{figs/tama_robot.pdf}
-%     \caption{たまチームの機体}
-%     \label{tama}
-%   \end{minipage}\\
-%   \begin{minipage}[b]{0.48\columnwidth}
-%     \centering
-%     \includegraphics[width=1.0\linewidth]{figs/mugimaru_robot.pdf}
-%     \caption{むぎまるチームの機体}
-%     \label{mugi}
-%   \end{minipage}
-% \end{figure}
-
-\begin{figure}[htbp]
-  \begin{center}
-    \includegraphics[width=1.0\linewidth]{figs/robot.pdf}
-    \caption{各チームの機体}
-    \label{fig:robot}
-  \end{center}
+\begin{figure}[H]
+  \begin{minipage}[b]{0.48\columnwidth}
+    \centering
+    \includegraphics[width=1.0\columnwidth]{figs/mugimaru_robot_2024.eps}
+    \label{mugimaru_robot}
+  \end{minipage}
+  \begin{minipage}[b]{0.48\columnwidth}
+    \centering
+    \includegraphics[width=1.0\columnwidth]{figs/tama_robot.pdf}
+    \label{kinako_robot}
+  \end{minipage}
+  \caption{左: むぎまるチームの機体　右: きなこチームの機体}
 \end{figure}
+
+% \begin{figure}[htbp]
+%   \begin{center}
+%     \includegraphics[width=1.0\linewidth]{figs/robot.pdf}
+%     \caption{各チームの機体}
+%     \label{fig:robot}
+%   \end{center}
+% \end{figure}
 
 ソフトウェアについては、
 2チームともROS 2をベースに構築した。

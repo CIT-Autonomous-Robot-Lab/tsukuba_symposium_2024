@@ -6,8 +6,8 @@
 
 Raspberry Piには、IMUとエンコーダ、車輪駆動用の
 モータを接続した。
-実行するノードとしては、IMU用のROS 2ドライバーノードと、
-オドメトリの出力とモータの制御を実施するノードがある。
+実行するノードとしては、IMU用のROS 2ドライバーノード（rt\_usb\_9axisimu\_driver）と、
+オドメトリの出力とモータの制御を実施するノード（raspimouse）がある。
 後者のノードでは、エンコーダの値と
 前者のノードで配信されたIMUの情報からロボットのオドメトリを計算し、
 トピックとして配信する。
@@ -17,17 +17,17 @@ Raspberry Piには、IMUとエンコーダ、車輪駆動用の
 PCには、3D LiDARとRaspberry Piを接続した。
 実行するノードとしては、3D LiDAR用のノードが2つ、
 ロボットの自己位置推定とナビゲーションを実行するノードがある。
-3D LiDAR用のノードとしては、Livox用のROS 2ドライバーノードと、
+3D LiDAR用のノードとしては、Livox用のROS 2ドライバーノード（livox\_lidar\_publisher）と、
 3D LiDARからの3次元点群を2次元に圧縮し、
-トピックとして配信するノードがある。
+トピックとして配信するノード（pointcloud\_to\_laserscan）がある。
 自己位置推定には、emcl2\_ros2パッケージ\cite{emcl2_ros2}を使用した。
+図中には、ノード名として「emcl2」と表している。
 このパッケージでは、走行する環境の地図と
 オドメトリ、2次元のLiDARデータを使用して、
 ロボットの推定位置をtfの形式で出力する。
-地図の作成には、slam\_toolboxパッケージ\cite{slam_toolbox}を使用した。
+この地図の作成には、slam\_toolboxパッケージ\cite{slam_toolbox}を使用した。
 ナビゲーションには、navigation2パッケージ\cite{nav2}を使用した。
-
-
+図中には、このパッケージに内包されるノードをまとめて「navigation2」と表している。
 
 \begin{figure}[h]
   \begin{center}

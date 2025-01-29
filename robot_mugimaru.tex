@@ -1,11 +1,15 @@
 \subsubsection{概要}
-むぎまるチームは1章の通り, 「自己位置推定の破綻を修復できる自己位置推定器の開発」
-を目標としてシステムを構成した. 
-そのため自己位置推定には, 
-ROS 2で膨張リセット\cite{ueda2004iros}により破綻を修復する機能と
-2D LiDARベースのMonte Carlo localization（MCL）\cite{fox1999etal}が
-実装されたemcl2\_ros2\cite{emcl2_ros2}を使用した. 
+むぎまるチームは1章で述べた目標のために, 
+膨張リセット\cite{ueda2004iros}による破綻の修復と
+2D LiDARのスキャンデータを用いる
+Monte Carlo localization（MCL）\cite{fox1999etal}が
+ROS 2で実装されたemcl2\_ros2\cite{emcl2_ros2}を使用した. 
+スキャンデータは, 3D LiDARの点群データを高さ方向で圧縮し, 
+2次元のデータとすることで作成した. 
+スキャンデータの取得に2D LiDARではなく3D LiDARを用いた意図は, 
+2D LiDARでは検出不可能な高さの障害物も検出可能にするためである. 
 次項ではシステム構成を詳細に説明する. 
+
 \subsubsection{システム構成}
 むぎまるチームのシステム構成について説明する. 
 ロボットに搭載した計算機, センサ, アクチュエータの接続の関係及び

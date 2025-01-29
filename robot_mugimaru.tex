@@ -1,7 +1,7 @@
 \subsubsection{概要}
 むぎまるチームは1章の通り、「自己位置推定の破綻を修復できる自己位置推定器の開発」
 を目標としてシステムを構成した。
-そのため自己位置推定には、LiDARベースのMonte Carlo localization（MCL）\cite{fox1999etal}と、
+そのため自己位置推定には、2D LiDARベースのMonte Carlo localization（MCL）\cite{fox1999etal}と、
 膨張リセット\cite{ueda2004iros}により破綻を修復する機能が
 実装されたemcl2\_ros2パッケージ\cite{emcl2_ros2}を使用した。
 次項では詳細のシステム構成を説明する。
@@ -27,12 +27,11 @@ PCには、3D LiDARとRaspberry Piを接続した。
 3D LiDAR用のノードとしては、Livox用のROS 2ドライバーノード（livox\_lidar\_publisher）と、
 3D LiDARからの3次元点群を2次元に圧縮し、
 トピックとして配信するノード（pointcloud\_to\_laserscan）がある。
-自己位置推定には、前項のとおりemcl2\_ros2パッケージ\cite{emcl2_ros2}を使用した。
+自己位置推定には、前項のとおりemcl2\_ros2パッケージを使用した。
 図中には、ノード名として「emcl2」と表している。
-このパッケージでは、走行する環境の地図と
-オドメトリ、2次元のLiDARデータを使用して、
-ロボットの推定位置をtfの形式で出力する。
-この地図の作成には、slam\_toolboxパッケージ\cite{slam_toolbox}を使用した。
+このパッケージでは、走行する環境の地図が必要となり、
+それはslam\_toolboxパッケージ\cite{slam_toolbox}を
+用いて作成した。
 ナビゲーションには、navigation2パッケージ\cite{nav2}を使用した。
 図中には、このパッケージに内包されるノードをまとめて「navigation2」と表している。
 

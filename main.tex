@@ -66,10 +66,33 @@
 各チームのロボットの外観を図\ref{fig:robot}に示す。
 いずれも、アールティ社製の
 Raspberry Pi Cat\cite{RTshop}を改造したものである。
-メンテナンス性と搭載量の向上のため、
+メンテナンス性の向上と新しいセンサや装置を乗せるため、
 元々のRaspberry Pi Catの外装を大幅に拡張した。
 一方で、元々搭載されているモータや電源回路、
 Raspberry Pi 4 Model Bなどはそのまま使用している。
+
+ \begin{figure}[htbp]
+   \begin{center}
+     \includegraphics[width=1.0\linewidth]{figs/robot.eps}
+     \caption{各チームの機体}
+     \label{fig:robot}
+   \end{center}
+ \end{figure}
+
+%\begin{figure}[H]
+%  \label{fig:robot}
+%  \begin{minipage}[b]{0.48\columnwidth}
+%    \centering
+%    \includegraphics[width=1.0\columnwidth]{figs/mugimaru_robot_2024.eps}
+%    %\label{mugimaru_robot}
+%  \end{minipage}
+%  \begin{minipage}[b]{0.48\columnwidth}
+%    \centering
+%    \includegraphics[width=1.0\columnwidth]{figs/tama_robot.pdf}
+%    %\label{kinako_robot}
+%  \end{minipage}
+%  \caption{左: むぎまるチームの機体　右: きなこチームの機体}
+%\end{figure}
 
 計算機は、ノートPCとRaspberry Piの2台を搭載している。
 %昨年は、1チームが計算機としてRaspberry Pi 4 Model Bのみを
@@ -103,28 +126,6 @@ Raspberry Piで車体の制御を行っている。
 外界センサとして使用している。
 内界センサとしては、RT社製のIMUセンサモジュール（RT-USB-9axisIMU2）と
 Raspberry Pi Catに元から搭載されているエンコーダを使用している。
-
-\begin{figure}[H]
-  \begin{minipage}[b]{0.48\columnwidth}
-    \centering
-    \includegraphics[width=1.0\columnwidth]{figs/mugimaru_robot_2024.eps}
-    \label{mugimaru_robot}
-  \end{minipage}
-  \begin{minipage}[b]{0.48\columnwidth}
-    \centering
-    \includegraphics[width=1.0\columnwidth]{figs/tama_robot.pdf}
-    \label{kinako_robot}
-  \end{minipage}
-  \caption{左: むぎまるチームの機体　右: きなこチームの機体}
-\end{figure}
-
-% \begin{figure}[htbp]
-%   \begin{center}
-%     \includegraphics[width=1.0\linewidth]{figs/robot.pdf}
-%     \caption{各チームの機体}
-%     \label{fig:robot}
-%   \end{center}
-% \end{figure}
 
 ソフトウェアについては、
 2チームともROS 2をベースに構築した。

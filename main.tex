@@ -11,16 +11,16 @@
 % タイトル
 \title{小型自律移動ロボットを用いたつくばチャレンジ2024での取り組み}
 
-\author{○永木　悠暉\authorrefmark{1}、吉越　誠\authorrefmark{2}、佐々木　新平\authorrefmark{1}、中村　啓太郎\authorrefmark{1}、鷲尾　優作\authorrefmark{1}、
-\\船井　涼\authorrefmark{2}、畑中　優一郎\authorrefmark{2}、川原　脩慈\authorrefmark{1}、茂　郁良\authorrefmark{1}、三浦　璃音\authorrefmark{1}、
-\\林原　靖男\authorrefmark{1}、上田　隆一\authorrefmark{1}}
+\author{○吉越　誠\authorrefmark{2}, 永木　悠暉\authorrefmark{1}, 佐々木　新平\authorrefmark{1}, 中村　啓太郎\authorrefmark{1}, 
+\\船井　涼\authorrefmark{2}, 畑中　優一郎\authorrefmark{2}, 川原　脩慈\authorrefmark{1}, 茂　郁良\authorrefmark{1}, 
+\\林原　靖男\authorrefmark{1}, 上田　隆一\authorrefmark{1}}
 
 %\etitle{Participation report in the Tsukuba Challenge 2023\\using a small mobile robot}
-\etitle{Development for Tsukuba Challenge 2024\\with small mobile robots}
+\etitle{Development for Tsukuba Challenge 2024 with small mobile robots}
 
-\eauthor{○Yuki NAGAKI\eauthorrefmark{1}、Makoto YOSHIGOE\eauthorrefmark{2}、Shinpei SASAKI\eauthorrefmark{1}、Keitaro NAKAMURA\eauthorrefmark{1}、Yusaku WASHIO\eauthorrefmark{1}、
-\\Ryo FUNAI\eauthorrefmark{2}、Yuichiro HATANAKA\eauthorrefmark{2}、Shuji KAWAHARA\eauthorrefmark{1}、Ikuo SHIGE\eauthorrefmark{1}、\\Rion MIURA\eauthorrefmark{1}、
-\\Yasuo HAYASHIBARA\eauthorrefmark{1}、Ryuichi UEDA\eauthorrefmark{1}}
+\eauthor{○Makoto YOSHIGOE\eauthorrefmark{2}, Yuki NAGAKI\eauthorrefmark{1}, Shimpei SASAKI\eauthorrefmark{1}, Keitaro NAKAMURA\eauthorrefmark{1}, 
+\\Ryo FUNAI\eauthorrefmark{2}, Yuichiro HATANAKA\eauthorrefmark{2}, Shuji KAWAHARA\eauthorrefmark{1}, Ikuo SHIGE\eauthorrefmark{1}, 
+\\Yasuo HAYASHIBARA\eauthorrefmark{1}, Ryuichi UEDA\eauthorrefmark{1}}
 
 \affiliation{千葉工業大学 未来ロボティクス学科 上田研究室 むぎまるチーム/きなこチーム}
 
@@ -29,58 +29,52 @@
 
 \authorreftext{1}{千葉工業大学先進工学部未来ロボティクス学科}
 \authorreftext{2}{千葉工業大学院先進工学研究科未来ロボティクス専攻}
-\eauthorreftext{1}{Department of Advanced Robotics、Faculty of Advanced Engineering、Chiba Institute of Technology}
-\eauthorreftext{2}{Department of Advanced Robotics、Graduate School of Advanced Engineering、Chiba Institute of Technology}
+\eauthorreftext{1}{Department of Advanced Robotics, Faculty of Advanced Engineering, Chiba Institute of Technology}
+\eauthorreftext{2}{Department of Advanced Robotics, Graduate School of Advanced Engineering, Chiba Institute of Technology}
 
 % 本文
 \section{緒言}
-%%%では　＞　は
-%#我々の所属する千葉工業大学未来ロボティクス学科上田研究室では、
-我々の所属する千葉工業大学未来ロボティクス学科上田研究室は、
-%%%ロボットの開発というよりシステムの開発？
-%#簡素なシステムで屋外環境を安全に自律走行できるロボットの開発を目的として
-簡素なロボットで屋外環境を安全に自律走行できるシステムの開発を目的とし, 
-%#2021年からつくばチャレンジに参加してきた。
-2021年からつくばチャレンジへの参加を続けている. 
-%#今年度のつくばチャレンジ2024では、
-つくばチャレンジ2024では、
-当研究室から「むぎまるチーム」、「きなこチーム」
-%#という名義で計2チームが出場した。
-という名義で計2チームが参加した。
-%%%どんな自己位置推定システム？
+我々の所属する千葉工業大学未来ロボティクス学科上田研究室は, 
+簡素なシステムで屋外環境を安全に自律走行できるシステムの開発を目的とし，
+2021年からつくばチャレンジに参加を続けている. 
+つくばチャレンジ2024では, 
+当研究室から「むぎまるチーム」, 「きなこチーム」
+という名義で計2チームが参加した. 
 むぎまるチームでは自己位置推定システムの
-開発に注力し、開発においての目標を
-「自己位置推定が途中で破綻した場合においても、
-それを修復できる自己位置推定器の開発」として活動した。
-またきなこチームでは、
-%%%むぎまるにあるような何に注力したかの説明ほしい？有無は統一したほうがきれいな気がします。
+%%%どんな自己位置推定システムか%
+開発に注力し, 開発においての目標を
+「自己位置推定が途中で破綻した場合においても, 
+それを修復できる自己位置推定器の開発」として活動した. 
+%%%きなこの注力ポイント%
+またきなこチームでは, 
 開発においての目標を「動的障害物が多い中でも動作する自己位置推定器の開発」
-として活動した。
-%%%本稿の構成の話になるので次の段落に合体したほうが良さそう？
-本稿では、使用及び開発したハードウェア、ソフトウェア
-の詳細と、つくばチャレンジ2024における各チームの取り組みを述べる。
+として活動した. 
+本稿では, 使用及び開発したハードウェア, ソフトウェア
+の詳細と, つくばチャレンジ2024における各チームの取り組みを述べる. 
+本稿の構成は次の通りである. 
+2章ではロボットのソフトウェア, ハードウェア構成について説明し, 
+3章では本走行の結果と見つかった課題を示す. 
+4章では本年度のつくばチャレンジで利用しなかった研究室での取り組みを紹介し, 
+5章では結言を述べる. 
+
 %\begin{itemize}
 %  \item ツナチーム：ROS 2\cite{ROS 2}実装での自作ナビゲーションスタックを小型ロボットで実用
-%  \item たまチーム：本研究室の自己位置推定パッケージであるemcl2\cite{emcl2}をROS 2に移行したemcl2\_ros2\cite{emcl2_ros2}と、Nav2を組み合わせて小型ロボットで実用
+%  \item たまチーム：本研究室の自己位置推定パッケージであるemcl2\cite{emcl2}をROS 2に移行したemcl2\_ros2\cite{emcl2_ros2}と, Nav2を組み合わせて小型ロボットで実用
 %  \item むぎまるチーム：安価・小型な3次元LiDARを用いた自律移動システムを小型ロボットで実用
 %\end{itemize}
-%とした。
-
-本稿の構成は次の通りである。
-2章ではロボットのソフトウェア、ハードウェア構成について説明し、
-3章では本走行の結果と見つかった課題を示す。
-4章では本年度のつくばチャレンジで利用しなかった研究室での取り組みを紹介し、
-5章では結言を述べる。
+%とした. 
 
 \section{各チームのロボットの構成}
-各チームのロボットの外観を図\ref{fig:robot}に示す。
-いずれも、アールティ社製の
-Raspberry Pi Cat\cite{RTshop}を改造したものである。
-メンテナンス性の向上と新しいセンサや装置を乗せるため、
-元々のRaspberry Pi Catの外装を大幅に拡張した。
-一方で、元々搭載されているモータや電源回路、
-%%%Raspberry Piはメモリが大きいやつに交換されていた気がします。ラズパイのことに触れなくていいと思います。
-Raspberry Pi 4 Model Bなどはそのまま使用している。
+ハードウェア構成は，昨年度までの当研究室のチームの使用していた
+アールティ社製のRaspberry Pi Cat\cite{RTshop}を
+改造したものを使用している．
+その各チームのロボットの外観を図\ref{fig:robot}に示す. 
+Raspberry Pi Catの外装を大幅に拡張することで， 
+メンテナンス性の向上を図り，
+新しいセンサや追加のバッテリーなど
+の装置を乗せることができるようになった． 
+一方で, 元々搭載されているモータや電源回路, 
+などはそのまま使用している. 
 
  \begin{figure}[htbp]
    \begin{center}
@@ -105,17 +99,11 @@ Raspberry Pi 4 Model Bなどはそのまま使用している。
 %  \caption{左: むぎまるチームの機体　右: きなこチームの機体}
 %\end{figure}
 
-計算機は、ノートPCとRaspberry Piの2台を搭載している。
-%昨年は、1チームが計算機としてRaspberry Pi 4 Model Bのみを
-%使用して自律走行を実現した\cite{池邉2022}。
-%しかし本年度については、
-%Raspberry Pi上でROS 2を実行するための
-%技術的な課題が解決しておらず、
-%ノートPCを使用することとなった。
-%#ノートPCで、ナビゲーションのプログラムを実行し、
-ノートPCで、ナビゲーションを行い、
-Raspberry Piで車体の制御を行っている。
-各ノートPCの諸元を表\ref{table:laptop}に示す。
+
+計算機は, ノートPCとRaspberry Piの2台を搭載している. 
+ノートPCで, ナビゲーションを行い, 
+Raspberry Piで車体の制御を行っている. 
+各ノートPCの諸元を表\ref{table:laptop}に示す. 
 
 \begin{table}[H]
   \centering
@@ -128,60 +116,49 @@ Raspberry Piで車体の制御を行っている。
     \hline
     むぎまる & AMD Ryzen 5 5600h with radeon graphics & 16GB \\
     \hline
-    きなこ  & & \\
+    きなこ   & 12th Gen Intel® Core™ i7-12700H  & 32GB \\
     \hline
   \end{tabular}
 \end{table}
 
-
-センサ構成としては、各チームの機体に
-外界センサとして3D LiDAR（Livox Mid-360）を搭載している．
-内界センサとしては、
+センサ構成としては, 両チームともに，
+3D LiDAR（Livox Mid-360）と
 Raspberry Pi Catに元から搭載されているエンコーダを使用している．
-むぎまるチームはさらに，
-RT社製のIMUセンサモジュール（RT-USB-9axisIMU2）使用している．
+むぎまるチームはさらに,アールティ社の 
+IMUセンサモジュール（RT-USB-9axisIMU2\cite{RTshopIMU}）を使用している．
 
-ソフトウェアについては、
-2チームともROS 2をベースに構築した。
-%%%他はなくても良さそうな気がします。
-他、ソフトウェアの詳細については、
-次節以降で説明する。
+ソフトウェアについては, 
+2チームともROS 2\cite{ROS 2}をベースに構築した. 
+ソフトウェアの詳細については, 
+次節以降で説明する. 
 
 
 \subsection{むぎまるチーム}
+
 \input{robot_mugimaru}
 
 \subsection{きなこチーム}\label{sub:localization}
 
 \input{robot_kinako}
 
-
 \section{本走行の結果}
 
-つくばチャレンジ2024での本走行の結果を表\ref{MainRun}に示す。
+つくばチャレンジ2024での本走行の結果を表\ref{MainRun}に示す. 
 
 \begin{table}[H]
   \caption{各チームの本走行の結果}
   \label{MainRun}
   \begin{tabular}{|c|c|p{4.0cm}|}
     \hline
-    チーム         & 走行距離 & リタイアの理由                                                                                             \\
+    チーム         & 走行距離 & リタイアの理由\\
     \hline
     むぎまるチーム & 470 m    & 横断歩道の途中でロボットが長時間動けなくなりその場でリタイア\\
     \hline
-%#    きなこチーム　 & 6m    & スタート直後に左へ旋回し道路へでたためその場でリアイア \\
-    きなこチーム　 & 6m    & スタート直後に左旋回し, 道路へコースアウトしたためリアイア \\
+
+    きなこチーム　 & 6m    & スタート直後に左へ旋回し，道路へコースアウトしたためリタイア \\
     \hline
   \end{tabular}
 \end{table}
-
-%@@@ここの2段落、中途半端なので3.1以降に入れるか、しっかり概要を説明する@@@
-%ツナチームは確認走行区間を走りきったが、最後の障害物回避の課題で、
-%障害物を回避できず衝突し、失敗した。
-
-%たまチームについては、表の通り、
-%坂道において車輪を取られてしまい失敗した。
-%坂道周辺では植え込みを用いて自己位置推定を試みたが失敗してしまった。
 
 \subsection{むぎまるチーム}
 \input{result_mugimaru.tex}
@@ -189,157 +166,156 @@ RT社製のIMUセンサモジュール（RT-USB-9axisIMU2）使用している�
 \subsection{きなこチーム}
 \input{result_kinako.tex}
 
-% \subsection{むぎまるチーム}
-% \subsubsection{本走行・実験走行で見つかった課題}
-
-% むぎまるチームの本走行・実験走行で見つかった課題は，障害物回避の失敗，3次元地図と2次元地図のズレ，消費電力の大きさである．
-% 障害物回避の失敗については表1のとおりである．
-% 本チームでは自己位置推定に使用する地図には，3次元点群地図を使用し，ナビゲーションには2次元の占有格子地図を使用している．
-% 2次元の占有格子地図は3次元地図を基に生成しているが，
-% 3次元上の障害物を2次元上に投影する際，坂のある地形ではズレが生じる．
-% 3次元点群地図では，ロール方向のズレと，ピッチ方向のズレが存在するため，必然的に2次元平面上に投影すると誤差が生じる．
-% 本チームは、あまり坂道の存在しない環境でロボットの動作確認をしていたため，
-% つくばチャレンジでの環境では想定以上の差が生じてしまった．
-
-% 消費電力については，むぎまるチームでは
-% ノートPCの消費電力が当研究室の他チームに比べて大きくなった。
-% 3次元点群ベースの自己位置推定を行う負荷がその原因となった。
-% 2次元より3次元のセンサ処理の
-% 負荷が大きくなることは仕方ないかもしれないが、
-% 処理の軽量化も課題としたい。
-
 \section{その他の試み}
 
 つくばチャレンジの環境において試していない
-研究室での取り組みについて紹介する。
-紹介したものついては、来年度以降のつくばチャレンジで
-試すことを考えている。
+研究室での取り組みについて紹介する. 
+紹介したものついては, 来年度以降のつくばチャレンジで
+試すことを考えている. 
 
-確率ロボティクスの領域には価値反復アルゴリズム\cite{上田詳解}がある。
-当研究室では、このアルゴリズムを移動ロボットの経路計画へ適用した
-パッケージを開発している\cite{ueda2023JRM}。
-価値反復アルゴリズムは、最適制御問題を解くことができるアルゴリズムである。
-これを移動ロボットの経路計画へ適用することで、
-現在地から目的地までの最適な経路（最短時間で移動できる経路）
-を算出することができる。
-また、この計算結果を障害物回避にも流用することで
-大域計画と局所計画が競合することなく回り道をする経路も算出することができる。
-一方で、価値反復アルゴリズムには、A*など一般によく用いられるアルゴリズムと比べ
-計算量が多く計算にかかる時間が長いという欠点がある。
-しかし、近年の計算機の性能の向上によって実時間で経路計画を行うことが可能となっている。
+当研究室では, 価値反復アルゴリズムを
+移動ロボットの経路計画へ適用した
+パッケージを開発している\cite{ueda2023JRM}. 
+価値反復アルゴリズムは，
+最適制御問題を解くことができるアルゴリズムである. \cite{上田詳解}
+このアルゴリズムで現在地から目的地までの経路を求める大域計画
+を行うことで, 最適な経路（最短時間で移動できる経路）を算出することができる. 
+また, この計算結果を障害物回避を行う局所計画にも流用することで, 
+大域計画と局所計画が競合することなく, 
+障害物を環境全域を用いて迂回をする経路も算出することができる. 
+一方で, 価値反復アルゴリズムには, A*など移動ロボットの経路計画に
+一般によく用いられるアルゴリズムと比べ, 
+計算量が多く計算にかかる時間が長いという欠点がある. 
+しかし, 近年の計算機の性能の向上によって
+実時間で経路計画を行うことが可能となっている. 
 
-また、価値反復パッケージに関連する研究も行っている。
+また, 価値反復パッケージに関連する研究も行っている. 
 価値反復アルゴリズムとA*を組み合わせて走り出しまでの
 時間を短縮する研究\cite{中村2024}
-では、価値反復アルゴリズムの計算量が多いために
-目的地に向かって走り出すまで時間がかかる問題の解決に取り組んでいる。
+では, 価値反復アルゴリズムの計算量が多いために
+目的地に向かって走り出すまで時間がかかる問題の解決に取り組んでいる. 
 
-%文献\cite{上田2023}では、
+
+%文献\cite{上田2023}では, 
 %自己位置推定の不確かさを考慮した行動決定
-%を実現するために、パーティクルの分布から直接行動を決定する
-%手法を実装している。
+%を実現するために, パーティクルの分布から直接行動を決定する
+%手法を実装している. 
 %この手法を実用できると，自己位置推定の結果が不確かであれば，
 %センシングできない縁石などの障害物から遠ざかって移動するなど，
-%よりロボットが安全に走行できるようになる。
+%よりロボットが安全に走行できるようになる. 
 
-%計算機の能力があがっていくことを見越して、
-%A*探索などより計算量の大きい価値反復を利用した、
-%ナビゲーションパッケージを開発している。
-%このパッケージでは、
+%計算機の能力があがっていくことを見越して, 
+%A*探索などより計算量の大きい価値反復を利用した, 
+%ナビゲーションパッケージを開発している. 
+%このパッケージでは, 
 %地図中の任意の場所からゴールまでに移動する経路を
-%完全に解くことにより、歩行者などの地図に載っていない
+%完全に解くことにより, 歩行者などの地図に載っていない
 %障害物（移動障害物）を発見したときに最適な迂回路をすばやく
-%計算することを実現している。
+%計算することを実現している. 
 
 
 
-%文献\cite{ikebeMECH}では、
-%人混みなどにおける自己位置推定の破綻を防ぐための研究を行っている。
+%文献\cite{ikebeMECH}では, 
+%人混みなどにおける自己位置推定の破綻を防ぐための研究を行っている. 
 %これはつくばチャレンジのスタート地点に人が多く集まることに
-%注目して行っている研究である。
-%研究している手法は、
-%MCLの各パーティクルに「視野」を持たせ、
-%移動障害物を見ているパーティクルを淘汰することで、
+%注目して行っている研究である. 
+%研究している手法は, 
+%MCLの各パーティクルに「視野」を持たせ, 
+%移動障害物を見ているパーティクルを淘汰することで, 
 %移動障害物に起因する誤った情報をMCLに
-%取り込まないようにするというものである。
-%この方法は、各パーティクルの重みを更新するときに
-%取り込むセンサ情報が減るので、
-%計算量が減少するという効果がある。
-%この手法の性能調査はシミュレータ上のみで完結しているため、
-%つくばチャレンジ本走行で使用して効果について調査したいと考えている。
+%取り込まないようにするというものである. 
+%この方法は, 各パーティクルの重みを更新するときに
+%取り込むセンサ情報が減るので, 
+%計算量が減少するという効果がある. 
+%この手法の性能調査はシミュレータ上のみで完結しているため, 
+%つくばチャレンジ本走行で使用して効果について調査したいと考えている. 
 
 
 \section{結言}
 %%%簡素な構成のロボットで走行したことも書く？
 今年度は昨年に引き続きROS 2ベースの
-システム構成でつくばチャレンジに参加した。
-それに加え新たな取り組みとして、
-メンテナンス性と搭載量の向上のためにロボットを拡張した。
-ソフトウェア開発の面では、自己位置推定の破綻に対処可能なパッケージの開発や, 
-動的障害物が多い中でも動作する自己位置推定器の開発に取り組んだ。
-%センサとしてLiDAR，IMUを搭載した小型ロボットでつくばチャレンジに参加した．
-%今回はROSのサポート終了に伴い，
-%ROS 2に移行したソフトウェア構成で参加した。それに加え、
-%IMUや3次元LiDARの追加，自作のナビゲーションスタックの使用など，
-%例年とは異なる試みをした。
-来年度は今年度の開発内容をもとに、見つかった課題への対策や、
-%4章で述べたものに取り組み、
-4章で述べた価値反復を用いた経路計画の実装？に取り組み、
-コースの完走を目指す。
-%
+システム構成でつくばチャレンジに参加した. 
+それに加え新たな取り組みとして, 
+メンテナンス性と搭載量の向上のためにロボットを拡張した. 
+ソフトウェア開発の面では, 自己位置推定の破綻に対処可能なパッケージの開発や
+動的障害物が多い中でも動作する自己位置推定器の開発に取り組んだ. 
+来年度は今年度の開発内容をもとに, 見つかった課題への対策や, 
+4章で述べた価値反復を適用した経路計画に取り組み, 
+コースの完走を目指す. 
+
 
 \section*{謝辞}
-つくばチャレンジ実行委員会、つくば市の皆様に感謝申し上げます。
-%上田研究室の新井亮大氏、登内リオン氏，松井大和氏，山崎政光氏，
-林原研究室の皆様には、つくばチャレンジ 2024の参加にあたりご意見、ご協力頂き感謝申し上げます。
-%↑上田整理。あと、著者に名前を連ねない人がいたらここに書くと良いです。
+つくばチャレンジ実行委員会, つくば市の皆様に感謝申し上げます. 
+上田研究室の鷲尾優作氏, 三浦璃音氏, 
+林原研究室の皆様には, つくばチャレンジ2024の参加にあたりご意見, ご協力頂き感謝申し上げます. 
 
 % 参考文献
 % \small
 \footnotesize
 \begin{thebibliography}{99}
 
-  \bibitem{ROS 2}
-  Macenski, Steven {\it et al.}: ``Robot Operating System 2: Design, architecture, and uses in the wild,''
-  Science Robotics, Vol. 7、No. 66, 2022.
-
-  \bibitem{emcl2}
-  Ryuichi Ueda: ``ryuichiueda/emcl2,'' \url{https://github.com/ryuichiueda/emcl2} (last visit: 2024-01-01).
-
-  \bibitem{emcl2_ros2}
-  Ryuichi Ueda: ``CIT-Autonomous-Robot-Lab/emcl2\_ros2,'' \url{https://github.com/CIT-Autonomous-Robot-Lab/emcl2_ros2} (last visit: 2025-01-22).
-  
- 
-
   \bibitem{RTshop}
   株式会社アールティ: ``Raspberry Pi Cat 屋外でも動かせる中型2輪ロボット''，
-  RT Robot Shop Products，\url{https://rt-net.jp/products/raspberry-pi-cat/} (last visit 2024-01-05)
+  RT Robot Shop Products，\url{https://rt-net.jp/products/raspberry-pi-cat/} (last visit 2025-01-29)
+  
+  \bibitem{RTshopIMU}
+  株式会社アールティ: ``USB出力9軸IMUセンサモジュール''，
+  RT Robot Shop Products，\url{https://rt-net.jp/products/usb9imu/} (last visit 2025-01-29)
 
-  \bibitem{池邉2022}
-  池邉 龍宏，内田 璃空，畑中 優一郎，臼井 温希，庄司 史門，松井 大和，山崎 政光，登内 リオン，林原 靖男，上田 隆一: ``Raspberry Pi のみを計算に用いる小型移動ロボットでのつくばチャレンジ 2022 参加レポート，つくばチャレンジ2022シンポジウム予稿集''，2022．
-
-    \bibitem{ROS}
-  Morgan Quigley {\it et al.}: ``ROS: an open-source Robot Operating System,''
-  Open-Source Software workshop of the International Conference on Robotics and Automation、2009.
-
-  %\bibitem{fox2003}
-  %Dieter Fox:
-  %``Adapting the Sample Size in Particle Filters Through KLD-Sampling,''
-  %International Journal of Robotics Research、Vol. 22、No. 12、pp. 985-1003、2003.
-
-  %\bibitem{gutmann2002}
-  %Jens-Steffen Gutmann and Dieter Fox:
-  %``An Experimental Comparison of Localization Methods Continued,''
-  %Proc. of the IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS),pp. 454-459、2002.
-
-  % \bibitem{ueda2002tdp}
-  % 	Ryuichi Ueda {\it et al.}: 
-  % ``Team description of Team ARAIBO,'' 
-  % Proc. of 2002 International RoboCup Symposium、2002. 
+  \bibitem{ROS 2}
+  Macenski, Steven {\it et al.}: ``Robot Operating System 2: Design, architecture, and uses in the wild,''
+  Science Robotics, Vol. 7, No. 66, 2022.
 
   \bibitem{ueda2004iros}
   Ryuichi Ueda {\it et al.}: 
   ``Expansion Resetting for Recovery from Fatal Error in Monte Carlo Localization -- Comparison with Sensor Resetting Methods,'' Proc．of IROS，pp.2481--2486，2004．
+  
+  \bibitem{fox1999etal}
+  D. Fox {\it et al.}: ``Monte Carlo Localization: Efficient Position Estimation for Mobile Robots,''
+  Proc. of AAAI, pp. 343-349, 1999.
+  
+  \bibitem{emcl2_ros2}
+  Ryuichi Ueda: ``CIT-Autonomous-Robot-Lab/emcl2\_ros2,'' \url{https://github.com/CIT-Autonomous-Robot-Lab/emcl2_ros2} (last visit: 2025-01-22).
+  
+  \bibitem{slam_toolbox}
+  SteveMacenski: ``SteveMacenski/slam\_toolbox,'' \url{https://github.com/SteveMacenski/slam_toolbox} (last visit: 2025-1-27).
+
+  \bibitem{nav2}
+  ROS Planning: ``ros-planning/navigation2 (humble branch),'' \url{https://github.com/https://github.com/ros-planning/navigation2.git} (last visit: 2025-1-22).
+
+  \bibitem{上田詳解}
+    上田隆一:``詳解確率ロボティクス'', 講談社, 2019
+
+  \bibitem{ueda2023JRM}
+  R. Ueda, L. Tonouchi, T. Ikebe, and Y. Hayashibara: ``Implementation of Brute-Force Value Iteration for Mobile Robot Path Planning and Obstacle Bypassing,''
+  J. Robot. Mechatron., Vol.35, No.6, pp. 1489-1502, 2023.
+
+   \bibitem{中村2024}
+    中村啓太郎，登内リオン，永木悠，林原靖男，上田隆一: ``自律移動ロボットのための価値反復ベースの大域計画器におけるA*探索による暫定経路の算出''，第25回システムインテグレーション部門講演会(SI2024)，1F1-11，2024
+  %\bibitem{emcl2}
+  %Ryuichi Ueda: ``ryuichiueda/emcl2,'' \url{https://github.com/ryuichiueda/emcl2} (last visit: 2024-01-01).
+
+  %\bibitem{池邉2022}
+  %池邉 龍宏，内田 璃空，畑中 優一郎，臼井 温希，庄司 史門，松井 大和，山崎 政光，登内 リオン，林原 靖男，上田 隆一: Raspberry Pi のみを計算に用いる小型移動ロボットでのつくばチャレンジ 2022 参加レポート，つくばチャレンジ2022シンポジウム予稿集，2022．
+
+  %\bibitem{ROS}
+  %Morgan Quigley {\it et al.}: ``ROS: an open-source Robot Operating System,''
+  %Open-Source Software workshop of the International Conference on Robotics and Automation, 2009.
+
+  %\bibitem{fox2003}
+  %Dieter Fox:
+  %``Adapting the Sample Size in Particle Filters Through KLD-Sampling,''
+  %International Journal of Robotics Research, Vol. 22, No. 12, pp. 985-1003, 2003.
+
+  %\bibitem{gutmann2002}
+  %Jens-Steffen Gutmann and Dieter Fox:
+  %``An Experimental Comparison of Localization Methods Continued,''
+  %Proc. of the IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS),pp. 454-459, 2002.
+
+  % \bibitem{ueda2002tdp}
+  % 	Ryuichi Ueda {\it et al.}: 
+  % ``Team description of Team ARAIBO,'' 
+  % Proc. of 2002 International RoboCup Symposium, 2002. 
 
   % \bibitem{map2gazebo}
   % Shiloh Curtis: ``shilohc/map2gazebo''，\url{https://github.com/shilohc/map2gazebo} (last visit: 2021-12-31)．
@@ -373,20 +349,20 @@ RT社製のIMUセンサモジュール（RT-USB-9axisIMU2）使用している�
   
 
   % \bibitem{上田2019}
-  % 上田 隆一: ``詳解確率ロボティクス''、講談社、2019.
+  % 上田 隆一: ``詳解確率ロボティクス'', 講談社, 2019.
 
   %   \bibitem{上田2020}
   %  上田隆一，鈴木勇矢: 自己位置が不確かな状況における移動ロボットの危険回避行動の生成，第38回日本ロボット学会学術講演会予稿集，pp．RSJ2020AC2C2-02，オンライン開催，2020.
 
   % \bibitem{地図合成}
-  % 川合隆太他: ``産業技術大学院大学における自律移動ロボット「産技大2号」の開発''，2019年度つくばチャレンジシンポジウム、pp.4-7、2020.
+  % 川合隆太他: ``産業技術大学院大学における自律移動ロボット「産技大2号」の開発''，2019年度つくばチャレンジシンポジウム, pp.4-7, 2020.
 
 
   % \bibitem{aws2020}
   %   CIT自律ロボット研究室: ``AWSロボットデリバリーチャレンジで本研究室メンバーが優勝,'' \url{https://lab.ueda.tech/?post=20200915_aws_challenge} (last visit 2022-01-04)
 
   % \bibitem{学科サイト}
-  %   千葉工業大学先進工学部未来ロボティクス学科: ``AWS Robot Delivery Challenge 2021 準優勝''、\url{https://www.robotics.it-chiba.ac.jp/j/?p=838} (last visit 2022-01-04)
+  %   千葉工業大学先進工学部未来ロボティクス学科: ``AWS Robot Delivery Challenge 2021 準優勝'', \url{https://www.robotics.it-chiba.ac.jp/j/?p=838} (last visit 2022-01-04)
 
   % \bibitem{つくばチャレンジロボット仕様}
   % つくばチャレンジ実行委員会事務局：``つくばチャレンジ 2021 ロボット仕様条件''，
@@ -405,82 +381,66 @@ RT社製のIMUセンサモジュール（RT-USB-9axisIMU2）使用している�
   % \bibitem{出野畑中}
   %   畑中 優一郎，出野 廣太郎，上田 隆一：``Raspberry Pi 3BのみでRaspberry Pi Catのナビゲーション（屋内環境編）''，CIT自律ロボット研究室，\url{https://lab.ueda.tech/?post=20211210} (last visit 2022-01-02)
 
-  \bibitem{ike_nav}
-  Tatsuhiro Ikebe: ``uhobeike/ike\_nav,'' \url{https://github.com/uhobeike/ike_nav} (last visit: 2024-01-10).
+  %\bibitem{ike_nav}
+  %Tatsuhiro Ikebe: ``uhobeike/ike\_nav,'' \url{https://github.com/uhobeike/ike_nav} (last visit: 2024-01-10).
 
-  \bibitem{ike_nav_detail}
-  池邉龍宏: ``自作ナビゲーションスタックでつくばチャレンジ2023に挑戦してみた話''，
-  \url{https://qiita.com/BEIKE/items/f3ff141cc25d49c01363} (last visit 2023-1-10).
+  %\bibitem{ike_nav_detail}
+  %池邉龍宏: ``自作ナビゲーションスタックでつくばチャレンジ2023に挑戦してみた話''，
+  %\url{https://qiita.com/BEIKE/items/f3ff141cc25d49c01363} (last visit 2023-1-10).
 
 
-  \bibitem{fox1999etal}
-	  D. Fox {\it et al.}: ``Monte Carlo Localization: Efficient Position Estimation for Mobile Robots,''
-  Proc. of AAAI, pp. 343-349, 1999.
 
-  \bibitem{hart1968}
-  Peter E. Hart and Nils J. Nilsson and Bertram Raphael: ``A Formal Basis for the Heuristic Determination of Minimal Cost Paths,''
-  IEEE Transactions on Systems Science and Cybernetics, Vol. 4, No.2, pp. 100-107, 1968.
+  %\bibitem{hart1968}
+  %Peter E. Hart and Nils J. Nilsson and Bertram Raphael: ``A Formal Basis for the Heuristic Determination of Minimal Cost Paths,''
+  %IEEE Transactions on Systems Science and Cybernetics, Vol. 4, No.2, pp. 100-107, 1968.
 
   %\bibitem{dijkstra1959}
   %E. W. Dijkstra : ``A Note on Two Problems in Connexion with Graphs,''
   %Numerische Mathematik, Vol. 1, pp. 269-271, 1959.
 
-  \bibitem{alberto2006}
-  Bemporad, Alberto: ``Model Predictive Control Design: New Trends and Tools,''
-  Proceedings of the 45th IEEE Conference on Decision and Control, pp. 6678-6683, 2006.
+  %\bibitem{alberto2006}
+  %Bemporad, Alberto: ``Model Predictive Control Design: New Trends and Tools,''
+  %Proceedings of the 45th IEEE Conference on Decision and Control, pp. 6678-6683, 2006.
 
-  \bibitem{fastlio}
-  Ericsii: ``Ericsii/FAST\_LIO (ros2 branch),'' \url{https://github.com/Ericsii/FAST_LIO.git} (last visit: 2023-11-19).
+  %\bibitem{fastlio}
+  %Ericsii: ``Ericsii/FAST\_LIO (ros2 branch),'' \url{https://github.com/Ericsii/FAST_LIO.git} (last visit: 2023-11-19).
 
-  \bibitem{autoware}
-  The Autoware Foundation: ``autowarefoundation/autoware.universe,'' \url{https://github.com/autowarefoundation/autoware.universe.git} (last visit: 2023-11-19).
-
-  \bibitem{slam_toolbox}
-  SteveMacenski: ``SteveMacenski/slam\_toolbox,'' \url{https://github.com/SteveMacenski/slam_toolbox} (last visit: 2025-1-27).
-
-  \bibitem{nav2}
-  ROS Planning: ``ros-planning/navigation2 (humble branch),'' \url{https://github.com/https://github.com/ros-planning/navigation2.git} (last visit: 2025-1-22).
+  %\bibitem{autoware}
+  %The Autoware Foundation: ``autowarefoundation/autoware.universe,'' \url{https://github.com/autowarefoundation/autoware.universe.git} (last visit: 2023-11-19).
 
 
-  \bibitem{ike_nav_loc_youtube}
-  池邉龍宏: ``自作パッケージで屋外自律移動してみた in つくばチャレンジ2023（本走行）''，
-  \url{https://www.youtube.com/embed/k9yxRKOCa14?si=c7ISmE1wH5W4BhgU&amp;start=1365} (last visit 2024-01-05)
+  %\bibitem{ike_nav_loc_youtube}
+  %池邉龍宏: ``自作パッケージで屋外自律移動してみた in つくばチャレンジ2023（本走行）''，
+  %\url{https://www.youtube.com/embed/k9yxRKOCa14?si=c7ISmE1wH5W4BhgU&amp;start=1365} (last visit 2024-01-05)
 
-  \bibitem{上田2023}
-上田隆一, 登内リオン, 池邉龍宏, 林原靖男: ``移動ロボットのための自己位置の不確かさを考慮したセンシングできない固定障害物の回避手法 ---価値反復を用いたナビゲーションにおける状態空間の局所拡張---'', 第28回ロボティクスシンポジア講演論文集, pp. 118-123, 2023.
+%\bibitem{上田2023}
+%上田隆一, 登内リオン, 池邉龍宏, 林原靖男: ``移動ロボットのための自己位置の不確かさを考慮したセンシングできない固定障害物の回避手法 ---価値反復を用いたナビゲーションにおける状態空間の局所拡張---'', 第28回ロボティクスシンポジア講演論文集, pp. 118-123, 2023.
 
-  \bibitem{tonouchi2023}
-  登内リオン, 池邉龍宏, 林原靖男, 上田隆一: ``価値反復を用いた移動ロボットによる屋外ナビゲーション,''
-  日本機械学会ロボティクス・メカトロニクス講演会, 2P1-G06, 2023.
+  %\bibitem{tonouchi2023}
+  %登内リオン, 池邉龍宏, 林原靖男, 上田隆一: ``価値反復を用いた移動ロボットによる屋外ナビゲーション,''
+  %日本機械学会ロボティクス・メカトロニクス講演会, 2P1-G06, 2023.
 
-  \bibitem{ueda2023JRM}
-  R. Ueda, L. Tonouchi, T. Ikebe, and Y. Hayashibara: ``Implementation of Brute-Force Value Iteration for Mobile Robot Path Planning and Obstacle Bypassing,''
-  J. Robot. Mechatron., Vol.35, No.6, pp. 1489-1502, 2023.
 
-  \bibitem{ikebeMECH}
-  池邉龍宏, 林原靖男, 上田隆一: ``未知障害物によるモンテカルロ自己位置推定の破綻を防ぐための観測範囲の制限と選択'',
-  日本機械学会ロボティクス・メカトロニクス講演会, 2A2-G06, 2023.
+  %\bibitem{ikebeMECH}
+  %池邉龍宏, 林原靖男, 上田隆一: ``未知障害物によるモンテカルロ自己位置推定の破綻を防ぐための観測範囲の制限と選択'',
+  %日本機械学会ロボティクス・メカトロニクス講演会, 2A2-G06, 2023.
 
-   \bibitem{中村2024}
-    中村啓太郎，登内リオン，永木悠，林原靖男，上田隆一: ``自律移動ロボットのための価値反復ベースの大域計画器におけるA*探索による暫定経路の算出''，第25回システムインテグレーション部門講演会(SI2024)，1F1-11，2024
 
-    \bibitem{上田詳解}
-    上田隆一:``詳解確率ロボティクス'', 講談社, 2019
 \end{thebibliography}
 \normalsize
 
 \clearpage
 
-%\section{付録として、各実験走行でどんなことをやっていたかを書く？}
-% 当チームは、9日間分のすべての実験走行会に参加した。
-% 7月2日、7月23日は確認走行区間から信号あり横断歩道手前までの自己位置推定のテストを行った。
-% 地図は昨年作ったものを使い、自己位置推定のパッケージにemcl2を使った。
-% また、駅・公園エリアの地図作成のためのrosbagを取った。
-% 9月17日、10月1日は駅・公園エリアの走行実験を行った。
-% 走行エリアが増えたことに伴い地図の容量が増大し、4GBメモリのRaspberry Piでは処理できなかった。
-% メモリの容量を増やし、地図の余白部分を削ることで駅・公園エリアが走行できるようになった。
-% 10月22日、10月23日は信号あり横断歩道の横断の走行テストを行った。
-% 通常の走行速度では青信号中に横断しきれなかったため、
-% 信号あり横断歩道の横断中のみ走行速度を変えることで、青信号中に横断しきることができた。
+%\section{付録として, 各実験走行でどんなことをやっていたかを書く？}
+% 当チームは, 9日間分のすべての実験走行会に参加した. 
+% 7月2日, 7月23日は確認走行区間から信号あり横断歩道手前までの自己位置推定のテストを行った. 
+% 地図は昨年作ったものを使い, 自己位置推定のパッケージにemcl2を使った. 
+% また, 駅・公園エリアの地図作成のためのrosbagを取った. 
+% 9月17日, 10月1日は駅・公園エリアの走行実験を行った. 
+% 走行エリアが増えたことに伴い地図の容量が増大し, 4GBメモリのRaspberry Piでは処理できなかった. 
+% メモリの容量を増やし, 地図の余白部分を削ることで駅・公園エリアが走行できるようになった. 
+% 10月22日, 10月23日は信号あり横断歩道の横断の走行テストを行った. 
+% 通常の走行速度では青信号中に横断しきれなかったため, 
+% 信号あり横断歩道の横断中のみ走行速度を変えることで, 青信号中に横断しきることができた. 
 
 \end{document}

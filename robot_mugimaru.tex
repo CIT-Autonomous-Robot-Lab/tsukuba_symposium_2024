@@ -1,4 +1,11 @@
-%\subsubsection{システム構成}
+\subsubsection{概要}
+むぎまるチームは1章の通り、「自己位置推定の破綻を修復できる自己位置推定器の開発」
+を目標としてシステムを構成した。
+そのため自己位置推定には、LiDARベースのMonte Carlo localization（MCL）と、
+膨張リセット\cite{ueda2004iros}により破綻を修復する機能が
+実装されたemcl2\_ros2パッケージ\cite{emcl2_ros2}を使用した。
+次項では詳細のシステム構成を説明する。
+\subsubsection{システム構成}
 むぎまるチームのシステム構成について説明する。
 ロボットに搭載した計算機、センサ、アクチュエータの接続の関係及び
 計算機で実行するROS 2ノードの概要を表したものを
@@ -20,7 +27,7 @@ PCには、3D LiDARとRaspberry Piを接続した。
 3D LiDAR用のノードとしては、Livox用のROS 2ドライバーノード（livox\_lidar\_publisher）と、
 3D LiDARからの3次元点群を2次元に圧縮し、
 トピックとして配信するノード（pointcloud\_to\_laserscan）がある。
-自己位置推定には、emcl2\_ros2パッケージ\cite{emcl2_ros2}を使用した。
+自己位置推定には、前項のとおりemcl2\_ros2パッケージ\cite{emcl2_ros2}を使用した。
 図中には、ノード名として「emcl2」と表している。
 このパッケージでは、走行する環境の地図と
 オドメトリ、2次元のLiDARデータを使用して、

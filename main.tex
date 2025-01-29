@@ -10,16 +10,16 @@
 % タイトル
 \title{小型自律移動ロボットを用いたつくばチャレンジ2024での取り組み}
 
-\author{○吉越　誠\authorrefmark{2}、永木　悠暉\authorrefmark{1}、佐々木　新平\authorrefmark{1}、中村　啓太郎\authorrefmark{1}、
-\\船井　涼\authorrefmark{2}、畑中　優一郎\authorrefmark{2}、川原　脩慈\authorrefmark{1}、茂　郁良\authorrefmark{1}、
-\\林原　靖男\authorrefmark{1}、上田　隆一\authorrefmark{1}}
+\author{○吉越　誠\authorrefmark{2}, 永木　悠暉\authorrefmark{1}, 佐々木　新平\authorrefmark{1}, 中村　啓太郎\authorrefmark{1}, 
+\\船井　涼\authorrefmark{2}, 畑中　優一郎\authorrefmark{2}, 川原　脩慈\authorrefmark{1}, 茂　郁良\authorrefmark{1}, 
+\\林原　靖男\authorrefmark{1}, 上田　隆一\authorrefmark{1}}
 
 %\etitle{Participation report in the Tsukuba Challenge 2023\\using a small mobile robot}
 \etitle{Development for Tsukuba Challenge 2024\\with small mobile robots}
 
-\eauthor{○Makoto YOSHIGOE\eauthorrefmark{2}、Yuki NAGAKI\eauthorrefmark{1}、Shimpei SASAKI\eauthorrefmark{1}、Keitaro NAKAMURA\eauthorrefmark{1}、
-\\Ryo FUNAI\eauthorrefmark{2}、Yuichiro HATANAKA\eauthorrefmark{2}、Shuji KAWAHARA\eauthorrefmark{1}、Ikuo SHIGE\eauthorrefmark{1}、
-\\Yasuo HAYASHIBARA\eauthorrefmark{1}、Ryuichi UEDA\eauthorrefmark{1}}
+\eauthor{○Makoto YOSHIGOE\eauthorrefmark{2}, Yuki NAGAKI\eauthorrefmark{1}, Shimpei SASAKI\eauthorrefmark{1}, Keitaro NAKAMURA\eauthorrefmark{1}, 
+\\Ryo FUNAI\eauthorrefmark{2}, Yuichiro HATANAKA\eauthorrefmark{2}, Shuji KAWAHARA\eauthorrefmark{1}, Ikuo SHIGE\eauthorrefmark{1}, 
+\\Yasuo HAYASHIBARA\eauthorrefmark{1}, Ryuichi UEDA\eauthorrefmark{1}}
 
 \affiliation{千葉工業大学 未来ロボティクス学科 上田研究室 むぎまるチーム/きなこチーム}
 
@@ -28,48 +28,48 @@
 
 \authorreftext{1}{千葉工業大学先進工学部未来ロボティクス学科}
 \authorreftext{2}{千葉工業大学院先進工学研究科未来ロボティクス専攻}
-\eauthorreftext{1}{Department of Advanced Robotics、Faculty of Advanced Engineering、Chiba Institute of Technology}
-\eauthorreftext{2}{Department of Advanced Robotics、Graduate School of Advanced Engineering、Chiba Institute of Technology}
+\eauthorreftext{1}{Department of Advanced Robotics, Faculty of Advanced Engineering, Chiba Institute of Technology}
+\eauthorreftext{2}{Department of Advanced Robotics, Graduate School of Advanced Engineering, Chiba Institute of Technology}
 
 % 本文
 \section{緒言}
 
-我々の所属する千葉工業大学未来ロボティクス学科上田研究室では、
+我々の所属する千葉工業大学未来ロボティクス学科上田研究室では, 
 簡素なシステムで屋外環境を安全に自律走行できるロボットの開発を目的として
-2021年からつくばチャレンジに参加してきた。
-今年度のつくばチャレンジ2024では、
-当研究室から「むぎまるチーム」、「きなこチーム」
-という名義で計2チームが出場した。
+2021年からつくばチャレンジに参加してきた. 
+今年度のつくばチャレンジ2024では, 
+当研究室から「むぎまるチーム」, 「きなこチーム」
+という名義で計2チームが出場した. 
 むぎまるチームでは自己位置推定システムの
-開発に注力し、開発においての目標を
-「自己位置推定が途中で破綻した場合においても、
-それを修復できる自己位置推定器の開発」として活動した。
-またきなこチームでは、
+開発に注力し, 開発においての目標を
+「自己位置推定が途中で破綻した場合においても, 
+それを修復できる自己位置推定器の開発」として活動した. 
+またきなこチームでは, 
 開発においての目標を「動的障害物が多い中でも動作する自己位置推定器の開発」
-として活動した。
-本稿では、使用及び開発したハードウェア、ソフトウェア
-の詳細と、つくばチャレンジ2024における各チームの取り組みを述べる。
+として活動した. 
+本稿では, 使用及び開発したハードウェア, ソフトウェア
+の詳細と, つくばチャレンジ2024における各チームの取り組みを述べる. 
 %\begin{itemize}
 %  \item ツナチーム：ROS 2\cite{ROS 2}実装での自作ナビゲーションスタックを小型ロボットで実用
-%  \item たまチーム：本研究室の自己位置推定パッケージであるemcl2\cite{emcl2}をROS 2に移行したemcl2\_ros2\cite{emcl2_ros2}と、Nav2を組み合わせて小型ロボットで実用
+%  \item たまチーム：本研究室の自己位置推定パッケージであるemcl2\cite{emcl2}をROS 2に移行したemcl2\_ros2\cite{emcl2_ros2}と, Nav2を組み合わせて小型ロボットで実用
 %  \item むぎまるチーム：安価・小型な3次元LiDARを用いた自律移動システムを小型ロボットで実用
 %\end{itemize}
-%とした。
+%とした. 
 
-本稿の構成は次の通りである。
-2章ではロボットのソフトウェア、ハードウェア構成について説明し、
-3章では本走行の結果と見つかった課題を示す。
-4章では本年度のつくばチャレンジで利用しなかった研究室での取り組みを紹介し、
-5章では結言を述べる。
+本稿の構成は次の通りである. 
+2章ではロボットのソフトウェア, ハードウェア構成について説明し, 
+3章では本走行の結果と見つかった課題を示す. 
+4章では本年度のつくばチャレンジで利用しなかった研究室での取り組みを紹介し, 
+5章では結言を述べる. 
 
 \section{各チームのロボットの構成}
-各チームのロボットの外観を図\ref{fig:robot}に示す。
-いずれも、アールティ社製の
-Raspberry Pi Cat\cite{RTshop}を改造したものである。
-メンテナンス性の向上と新しいセンサや装置を乗せるため、
-元々のRaspberry Pi Catの外装を大幅に拡張した。
-一方で、元々搭載されているモータや電源回路、
-Raspberry Pi 4 Model Bなどはそのまま使用している。
+各チームのロボットの外観を図\ref{fig:robot}に示す. 
+いずれも, アールティ社製の
+Raspberry Pi Cat\cite{RTshop}を改造したものである. 
+メンテナンス性の向上と新しいセンサや装置を乗せるため, 
+元々のRaspberry Pi Catの外装を大幅に拡張した. 
+一方で, 元々搭載されているモータや電源回路, 
+Raspberry Pi 4 Model Bなどはそのまま使用している. 
 
  \begin{figure}[htbp]
    \begin{center}
@@ -94,10 +94,10 @@ Raspberry Pi 4 Model Bなどはそのまま使用している。
 %  \caption{左: むぎまるチームの機体　右: きなこチームの機体}
 %\end{figure}
 
-計算機は、ノートPCとRaspberry Piの2台を搭載している。
-ノートPCで、ナビゲーションのプログラムを実行し、
-Raspberry Piで車体の制御を行っている。
-各ノートPCの諸元を表\ref{table:laptop}に示す。
+計算機は, ノートPCとRaspberry Piの2台を搭載している. 
+ノートPCで, ナビゲーションのプログラムを実行し, 
+Raspberry Piで車体の制御を行っている. 
+各ノートPCの諸元を表\ref{table:laptop}に示す. 
 
 \begin{table}[H]
   \centering
@@ -115,16 +115,16 @@ Raspberry Piで車体の制御を行っている。
   \end{tabular}
 \end{table}
 
-センサ構成としては、各チームの機体に
+センサ構成としては, 各チームの機体に
 外界センサとして3D LiDAR（Livox Mid-360）を搭載している．
-内界センサとしては、
+内界センサとしては, 
 Raspberry Pi Catに元から搭載されているエンコーダを使用している．
-むぎまるチームはさらに、IMUセンサモジュール（RT-USB-9axisIMU2\cite{RTshopIMU}）を使用している．
+むぎまるチームはさらに, IMUセンサモジュール（RT-USB-9axisIMU2\cite{RTshopIMU}）を使用している．
 
-ソフトウェアについては、
-2チームともROS 2\cite{ROS 2}をベースに構築した。
-他、ソフトウェアの詳細については、
-次節以降で説明する。
+ソフトウェアについては, 
+2チームともROS 2\cite{ROS 2}をベースに構築した. 
+他, ソフトウェアの詳細については, 
+次節以降で説明する. 
 
 
 \subsection{むぎまるチーム}
@@ -137,7 +137,7 @@ Raspberry Pi Catに元から搭載されているエンコーダを使用して�
 
 \section{本走行の結果}
 
-つくばチャレンジ2024での本走行の結果を表\ref{MainRun}に示す。
+つくばチャレンジ2024での本走行の結果を表\ref{MainRun}に示す. 
 
 \begin{table}[H]
   \caption{各チームの本走行の結果}
@@ -162,81 +162,81 @@ Raspberry Pi Catに元から搭載されているエンコーダを使用して�
 \section{その他の試み}
 
 つくばチャレンジの環境において試していない
-研究室での取り組みについて紹介する。
-紹介したものついては、来年度以降のつくばチャレンジで
-試すことを考えている。
+研究室での取り組みについて紹介する. 
+紹介したものついては, 来年度以降のつくばチャレンジで
+試すことを考えている. 
 
-確率ロボティクスの領域には価値反復アルゴリズム\cite{上田詳解}がある。
-当研究室では、このアルゴリズムを移動ロボットの経路計画へ適用した
-パッケージを開発している\cite{ueda2023JRM}。
-価値反復アルゴリズムは、最適制御問題を解くことができるアルゴリズムである。
-これを移動ロボットの経路計画へ適用することで、
+確率ロボティクスの領域には価値反復アルゴリズム\cite{上田詳解}がある. 
+当研究室では, このアルゴリズムを移動ロボットの経路計画へ適用した
+パッケージを開発している\cite{ueda2023JRM}. 
+価値反復アルゴリズムは, 最適制御問題を解くことができるアルゴリズムである. 
+これを移動ロボットの経路計画へ適用することで, 
 現在地から目的地までの最適な経路（最短時間で移動できる経路）
-を算出することができる。
-また、この計算結果を障害物回避にも流用することで
-大域計画と局所計画が競合することなく回り道をする経路も算出することができる。
-一方で、価値反復アルゴリズムには、A*など一般によく用いられるアルゴリズムと比べ
-計算量が多く計算にかかる時間が長いという欠点がある。
-しかし、近年の計算機の性能の向上によって実時間で経路計画を行うことが可能となっている。
+を算出することができる. 
+また, この計算結果を障害物回避にも流用することで
+大域計画と局所計画が競合することなく回り道をする経路も算出することができる. 
+一方で, 価値反復アルゴリズムには, A*など一般によく用いられるアルゴリズムと比べ
+計算量が多く計算にかかる時間が長いという欠点がある. 
+しかし, 近年の計算機の性能の向上によって実時間で経路計画を行うことが可能となっている. 
 
-また、価値反復パッケージに関連する研究も行っている。
+また, 価値反復パッケージに関連する研究も行っている. 
 価値反復アルゴリズムとA*を組み合わせて走り出しまでの
 時間を短縮する研究\cite{中村2024}
-では、価値反復アルゴリズムの計算量が多いために
-目的地に向かって走り出すまで時間がかかる問題の解決に取り組んでいる。
+では, 価値反復アルゴリズムの計算量が多いために
+目的地に向かって走り出すまで時間がかかる問題の解決に取り組んでいる. 
 
-%文献\cite{上田2023}では、
+%文献\cite{上田2023}では, 
 %自己位置推定の不確かさを考慮した行動決定
-%を実現するために、パーティクルの分布から直接行動を決定する
-%手法を実装している。
+%を実現するために, パーティクルの分布から直接行動を決定する
+%手法を実装している. 
 %この手法を実用できると，自己位置推定の結果が不確かであれば，
 %センシングできない縁石などの障害物から遠ざかって移動するなど，
-%よりロボットが安全に走行できるようになる。
+%よりロボットが安全に走行できるようになる. 
 
-%計算機の能力があがっていくことを見越して、
-%A*探索などより計算量の大きい価値反復を利用した、
-%ナビゲーションパッケージを開発している。
-%このパッケージでは、
+%計算機の能力があがっていくことを見越して, 
+%A*探索などより計算量の大きい価値反復を利用した, 
+%ナビゲーションパッケージを開発している. 
+%このパッケージでは, 
 %地図中の任意の場所からゴールまでに移動する経路を
-%完全に解くことにより、歩行者などの地図に載っていない
+%完全に解くことにより, 歩行者などの地図に載っていない
 %障害物（移動障害物）を発見したときに最適な迂回路をすばやく
-%計算することを実現している。
+%計算することを実現している. 
 
 
 
-%文献\cite{ikebeMECH}では、
-%人混みなどにおける自己位置推定の破綻を防ぐための研究を行っている。
+%文献\cite{ikebeMECH}では, 
+%人混みなどにおける自己位置推定の破綻を防ぐための研究を行っている. 
 %これはつくばチャレンジのスタート地点に人が多く集まることに
-%注目して行っている研究である。
-%研究している手法は、
-%MCLの各パーティクルに「視野」を持たせ、
-%移動障害物を見ているパーティクルを淘汰することで、
+%注目して行っている研究である. 
+%研究している手法は, 
+%MCLの各パーティクルに「視野」を持たせ, 
+%移動障害物を見ているパーティクルを淘汰することで, 
 %移動障害物に起因する誤った情報をMCLに
-%取り込まないようにするというものである。
-%この方法は、各パーティクルの重みを更新するときに
-%取り込むセンサ情報が減るので、
-%計算量が減少するという効果がある。
-%この手法の性能調査はシミュレータ上のみで完結しているため、
-%つくばチャレンジ本走行で使用して効果について調査したいと考えている。
+%取り込まないようにするというものである. 
+%この方法は, 各パーティクルの重みを更新するときに
+%取り込むセンサ情報が減るので, 
+%計算量が減少するという効果がある. 
+%この手法の性能調査はシミュレータ上のみで完結しているため, 
+%つくばチャレンジ本走行で使用して効果について調査したいと考えている. 
 
 
 \section{結言}
 今年度は昨年に引き続きROS 2ベースの
-システム構成でつくばチャレンジに参加した。
-それに加え新たな取り組みとして、
-メンテナンス性と搭載量の向上のためにロボットを拡張した。
-ソフトウェア開発の面では、自己位置推定の破綻に対処可能なパッケージの開発や
-動的障害物が多い中でも動作する自己位置推定器の開発に取り組んだ。
-来年度は今年度の開発内容をもとに、見つかった課題への対策や、
-4章で述べたものに取り組み、
-コースの完走を目指す。
+システム構成でつくばチャレンジに参加した. 
+それに加え新たな取り組みとして, 
+メンテナンス性と搭載量の向上のためにロボットを拡張した. 
+ソフトウェア開発の面では, 自己位置推定の破綻に対処可能なパッケージの開発や
+動的障害物が多い中でも動作する自己位置推定器の開発に取り組んだ. 
+来年度は今年度の開発内容をもとに, 見つかった課題への対策や, 
+4章で述べたものに取り組み, 
+コースの完走を目指す. 
 %
 
 \section*{謝辞}
-つくばチャレンジ実行委員会、つくば市の皆様に感謝申し上げます。
-上田研究室の鷲尾優作氏、三浦璃音氏、
-林原研究室の皆様には、つくばチャレンジ2024の参加にあたりご意見、ご協力頂き感謝申し上げます。
-%↑上田整理。あと、著者に名前を連ねない人がいたらここに書くと良いです。
+つくばチャレンジ実行委員会, つくば市の皆様に感謝申し上げます. 
+上田研究室の鷲尾優作氏, 三浦璃音氏, 
+林原研究室の皆様には, つくばチャレンジ2024の参加にあたりご意見, ご協力頂き感謝申し上げます. 
+%↑上田整理. あと, 著者に名前を連ねない人がいたらここに書くと良いです. 
 
 % 参考文献
 % \small
@@ -253,7 +253,7 @@ Raspberry Pi Catに元から搭載されているエンコーダを使用して�
 
   \bibitem{ROS 2}
   Macenski, Steven {\it et al.}: ``Robot Operating System 2: Design, architecture, and uses in the wild,''
-  Science Robotics, Vol. 7、No. 66, 2022.
+  Science Robotics, Vol. 7, No. 66, 2022.
 
   \bibitem{fox1999etal}
 	  D. Fox {\it et al.}: ``Monte Carlo Localization: Efficient Position Estimation for Mobile Robots,''
@@ -289,22 +289,22 @@ Raspberry Pi Catに元から搭載されているエンコーダを使用して�
 
   %\bibitem{ROS}
   %Morgan Quigley {\it et al.}: ``ROS: an open-source Robot Operating System,''
-  %Open-Source Software workshop of the International Conference on Robotics and Automation、2009.
+  %Open-Source Software workshop of the International Conference on Robotics and Automation, 2009.
 
   %\bibitem{fox2003}
   %Dieter Fox:
   %``Adapting the Sample Size in Particle Filters Through KLD-Sampling,''
-  %International Journal of Robotics Research、Vol. 22、No. 12、pp. 985-1003、2003.
+  %International Journal of Robotics Research, Vol. 22, No. 12, pp. 985-1003, 2003.
 
   %\bibitem{gutmann2002}
   %Jens-Steffen Gutmann and Dieter Fox:
   %``An Experimental Comparison of Localization Methods Continued,''
-  %Proc. of the IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS),pp. 454-459、2002.
+  %Proc. of the IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS),pp. 454-459, 2002.
 
   % \bibitem{ueda2002tdp}
   % 	Ryuichi Ueda {\it et al.}: 
   % ``Team description of Team ARAIBO,'' 
-  % Proc. of 2002 International RoboCup Symposium、2002. 
+  % Proc. of 2002 International RoboCup Symposium, 2002. 
 
   % \bibitem{map2gazebo}
   % Shiloh Curtis: ``shilohc/map2gazebo''，\url{https://github.com/shilohc/map2gazebo} (last visit: 2021-12-31)．
@@ -338,20 +338,20 @@ Raspberry Pi Catに元から搭載されているエンコーダを使用して�
   
 
   % \bibitem{上田2019}
-  % 上田 隆一: ``詳解確率ロボティクス''、講談社、2019.
+  % 上田 隆一: ``詳解確率ロボティクス'', 講談社, 2019.
 
   %   \bibitem{上田2020}
   %  上田隆一，鈴木勇矢: 自己位置が不確かな状況における移動ロボットの危険回避行動の生成，第38回日本ロボット学会学術講演会予稿集，pp．RSJ2020AC2C2-02，オンライン開催，2020.
 
   % \bibitem{地図合成}
-  % 川合隆太他: ``産業技術大学院大学における自律移動ロボット「産技大2号」の開発''，2019年度つくばチャレンジシンポジウム、pp.4-7、2020.
+  % 川合隆太他: ``産業技術大学院大学における自律移動ロボット「産技大2号」の開発''，2019年度つくばチャレンジシンポジウム, pp.4-7, 2020.
 
 
   % \bibitem{aws2020}
   %   CIT自律ロボット研究室: ``AWSロボットデリバリーチャレンジで本研究室メンバーが優勝,'' \url{https://lab.ueda.tech/?post=20200915_aws_challenge} (last visit 2022-01-04)
 
   % \bibitem{学科サイト}
-  %   千葉工業大学先進工学部未来ロボティクス学科: ``AWS Robot Delivery Challenge 2021 準優勝''、\url{https://www.robotics.it-chiba.ac.jp/j/?p=838} (last visit 2022-01-04)
+  %   千葉工業大学先進工学部未来ロボティクス学科: ``AWS Robot Delivery Challenge 2021 準優勝'', \url{https://www.robotics.it-chiba.ac.jp/j/?p=838} (last visit 2022-01-04)
 
   % \bibitem{つくばチャレンジロボット仕様}
   % つくばチャレンジ実行委員会事務局：``つくばチャレンジ 2021 ロボット仕様条件''，
@@ -420,16 +420,16 @@ Raspberry Pi Catに元から搭載されているエンコーダを使用して�
 
 \clearpage
 
-%\section{付録として、各実験走行でどんなことをやっていたかを書く？}
-% 当チームは、9日間分のすべての実験走行会に参加した。
-% 7月2日、7月23日は確認走行区間から信号あり横断歩道手前までの自己位置推定のテストを行った。
-% 地図は昨年作ったものを使い、自己位置推定のパッケージにemcl2を使った。
-% また、駅・公園エリアの地図作成のためのrosbagを取った。
-% 9月17日、10月1日は駅・公園エリアの走行実験を行った。
-% 走行エリアが増えたことに伴い地図の容量が増大し、4GBメモリのRaspberry Piでは処理できなかった。
-% メモリの容量を増やし、地図の余白部分を削ることで駅・公園エリアが走行できるようになった。
-% 10月22日、10月23日は信号あり横断歩道の横断の走行テストを行った。
-% 通常の走行速度では青信号中に横断しきれなかったため、
-% 信号あり横断歩道の横断中のみ走行速度を変えることで、青信号中に横断しきることができた。
+%\section{付録として, 各実験走行でどんなことをやっていたかを書く？}
+% 当チームは, 9日間分のすべての実験走行会に参加した. 
+% 7月2日, 7月23日は確認走行区間から信号あり横断歩道手前までの自己位置推定のテストを行った. 
+% 地図は昨年作ったものを使い, 自己位置推定のパッケージにemcl2を使った. 
+% また, 駅・公園エリアの地図作成のためのrosbagを取った. 
+% 9月17日, 10月1日は駅・公園エリアの走行実験を行った. 
+% 走行エリアが増えたことに伴い地図の容量が増大し, 4GBメモリのRaspberry Piでは処理できなかった. 
+% メモリの容量を増やし, 地図の余白部分を削ることで駅・公園エリアが走行できるようになった. 
+% 10月22日, 10月23日は信号あり横断歩道の横断の走行テストを行った. 
+% 通常の走行速度では青信号中に横断しきれなかったため, 
+% 信号あり横断歩道の横断中のみ走行速度を変えることで, 青信号中に横断しきることができた. 
 
 \end{document}

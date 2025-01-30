@@ -1,5 +1,7 @@
 \subsubsection{概要}
 むぎまるチームは1章で述べた目標のために, 
+当研究室で開発・メンテナンスをしている自己位置推定の
+パッケージであるemcl2\_ros2\cite{emcl2_ros2}を使用した. 
 %@@@↑これだと目標のために
 %@@@（人の作った）emcl2_ros2を使ってるという感じになってよくないです. 
 %@@@emcl2_ros2は自分たちでメンテナンスしてるんですから, 自分たちのものだと明記を. 
@@ -7,10 +9,9 @@
 %2D LiDARのスキャンデータを用いる
 %Monte Carlo localization（MCL）\cite{fox1999etal}が
 %ROS 2で実装されたemcl2\_ros2\cite{emcl2_ros2}を使用した. 
-自己位置推定システムとして, 
-膨張リセット\cite{ueda2004iros}ができる
-MCL（Monte Carlo localization @@@引用@@@）ベースのパッケージである
-emcl2\_ros2\cite{emcl2_ros2}を使用した. 
+emcl2\_ros2は, 膨張リセット\cite{ueda2004iros}ができる
+MCL（Monte Carlo localization\cite{fox1999etal}）ベースの
+ROS 2パッケージである. 
 膨張リセットとは, 
 %自己位置が不確かなとき, 
 自己位置推定になんらかの異常が検知された場合, 
@@ -65,11 +66,15 @@ Raspberry Piには, 車体制御のために, IMUとエンコーダ, 車輪駆�
 %%%~という機能を実装した. （補足として）~というノードで実装されている　的な形に直したほうがわかりやすい気がします. 
 %%%
 %自己位置推定には, 前項のとおりemcl2\_ros2を使用した. 
-emcl2\_ros2には, 走行する環境の地図が必要となり, 
+emcl2\_ros2は, パラメータ以外をデフォルトの状態で使用した. 
+またこのノードには, 走行する環境の地図が必要となり, 
 その作成にはROS 2標準のSLAMパッケージである
 slam\_toolbox\cite{slam_toolbox}を使用した. 
-
+navigation2における大域計画と局所計画のアルゴリズムにはそれぞれ, 
+ダイクストラ\cite{dijkstra}とDWB（Dynamic Window Approach\cite{dwa}の評価関数を拡張したアルゴリズム）を使用した. 
+これらはnavigation2でデフォルトで設定されているものである. 
 %@@@できれば大域計画と局所計画にどのアルゴリズム（or ノード）をつかったかも表記を
+
 
 \begin{figure}[h]
   \begin{center}

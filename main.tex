@@ -73,8 +73,7 @@ Raspberry Pi Catの外装を大型化することで,
 %@@@↑「向上を試み」という記述になってたけど言い切ったほうがいいです. 向上しなかったらな削除
 新しいセンサや追加のバッテリーなど
 の装置を乗せることができるようになった． 
-一方で, モータや電源回路, 
-などは改造前のものをそのまま使用している. 
+一方で, モータや電源回路などは改造前のものをそのまま使用している. 
 
  \begin{figure}[htbp]
    \begin{center}
@@ -274,15 +273,15 @@ MCLの破綻の修復に衛生測位を用いる方法は有効に働く可能�
 
 
 \section{結言}
-本研究室は, 昨年度に続きROS 2ベースのシステム構成でつくばチャレンジに参加した. 
+本研究室は, 昨年度に続き簡素なロボットでつくばチャレンジに参加した. 
 本年度は, 新たにロボットの外装を拡張してメンテナンス性と積載量を向上させるとともに, 
 自己位置推定の破綻を修復可能なアルゴリズムや, 
 動的障害物が多い環境下でも精度を維持しやすい自己位置推定器の開発に取り組んだ. 
 
 むぎまるチームは, 
 膨張リセットを備えたMCLベースの自己位置推定により, 
-破綻からの復帰を目指すシステムを構築したが, 
-横断歩道上でのコストマップへの乗り上げが原因でナビゲーションが中断し, 
+破綻からの復帰を目指すシステムを構築したが,  
+コストマップ上の走行不可能領域への侵入が原因でナビゲーションが中断し, 
 リタイアに至った. 
 また, きなこチームは, 
 高さ方向に応じて複数の2次元マップを切り替える自己位置推定手法を開発するなどの工夫を行ったものの, 
@@ -336,6 +335,9 @@ MCLの破綻の修復に衛生測位を用いる方法は有効に働く可能�
   Macenski, Steven {\it et al.}: ``Robot Operating System 2: Design, architecture, and uses in the wild,''
   Science Robotics, Vol. 7, No. 66, 2022.
 
+  \bibitem{emcl2_ros2}
+  Ryuichi Ueda: ``CIT-Autonomous-Robot-Lab/emcl2\_ros2,'' \url{https://github.com/CIT-Autonomous-Robot-Lab/emcl2_ros2} (last visit: 2025-01-22).
+  
   \bibitem{ueda2004iros}
   Ryuichi Ueda {\it et al.}: 
   ``Expansion Resetting for Recovery from Fatal Error in Monte Carlo Localization -- Comparison with Sensor Resetting Methods,'' Proc．of IROS，pp.2481--2486，2004．
@@ -343,9 +345,6 @@ MCLの破綻の修復に衛生測位を用いる方法は有効に働く可能�
   \bibitem{fox1999etal}
   D. Fox {\it et al.}: ``Monte Carlo Localization: Efficient Position Estimation for Mobile Robots,''
   Proc. of AAAI, pp. 343-349, 1999.
-  
-  \bibitem{emcl2_ros2}
-  Ryuichi Ueda: ``CIT-Autonomous-Robot-Lab/emcl2\_ros2,'' \url{https://github.com/CIT-Autonomous-Robot-Lab/emcl2_ros2} (last visit: 2025-01-22).
   
   \bibitem{nav2}
   ROS Planning: ``ros-planning/navigation2 (humble branch),'' \url{https://github.com/https://github.com/ros-planning/navigation2.git} (last visit: 2025-1-22).
@@ -365,8 +364,9 @@ MCLの破綻の修復に衛生測位を用いる方法は有効に働く可能�
   Kenji Koide, Masashi Yokozuka, Shuji Oishi, and Atsuhiko Banno: ``GLIM: 3D Range-Inertial Localization and Mapping with GPU-Accelerated Scan Matching Factors,''
   Robotics and Autonomous Systems. 2024.
 
-  \bibitem{上田詳解}
-    上田隆一: ``詳解確率ロボティクス'', 講談社, 2019
+  \bibitem{ueda2023JRM}
+  R. Ueda, L. Tonouchi, T. Ikebe, and Y. Hayashibara: ``Implementation of Brute-Force Value Iteration for Mobile Robot Path Planning and Obstacle Bypassing,''
+  J. Robot. Mechatron., Vol.35, No.6, pp. 1489-1502, 2023.
 
   \bibitem{上田確率}
     上田隆一: ``ロボットの確率・統計'', コロナ社, 2024
@@ -374,9 +374,8 @@ MCLの破綻の修復に衛生測位を用いる方法は有効に働く可能�
   \bibitem{value_iteration2}
     Ryuichi Ueda: ``ryuichiueda/value\_iteration2'' \url{https://github.com/ryuichiueda/value_iteration2} (last visit: 2025-01-30).
 
-  \bibitem{ueda2023JRM}
-  R. Ueda, L. Tonouchi, T. Ikebe, and Y. Hayashibara: ``Implementation of Brute-Force Value Iteration for Mobile Robot Path Planning and Obstacle Bypassing,''
-  J. Robot. Mechatron., Vol.35, No.6, pp. 1489-1502, 2023.
+  \bibitem{上田詳解}
+    上田隆一: ``詳解確率ロボティクス'', 講談社, 2019
 
    \bibitem{中村2024}
     中村啓太郎，登内リオン，永木悠暉，林原靖男，上田隆一: ``自律移動ロボットのための価値反復ベースの大域計画器におけるA*探索による暫定経路の算出''，第25回システムインテグレーション部門講演会(SI2024)，1F1-11，2024

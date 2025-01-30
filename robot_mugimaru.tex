@@ -27,7 +27,7 @@ ROS 2パッケージである.
 
 emcl2\_ros2は2D LiDARからの入力を想定しているため, 
 3D LiDARを使う場合はデータの変換が必要となる. 
-そこで, 3D LiDARの点群データを高さ方向に圧縮し, 
+そこで, 3D LiDARのスキャンデータを高さ方向に圧縮し, 
 2次元のデータとして入力とした. 
 スキャンデータの取得に2D LiDARではなく3D LiDARを用いた意図は, 
 2D LiDARでは検出不可能な高さの障害物も検出可能にするためである. 
@@ -54,7 +54,7 @@ Raspberry Piには, 車体制御のために, IMUとエンコーダ, 車輪駆�
 実行されるノードとしては, 3D LiDARに関係するもの: 
 \begin{itemize}
 	\item livox\_lidar\_publisher: Livox用のROS 2ドライバノード
-	\item pointcloud\_to\_laserscan: 3次元点群を2次元に圧縮してトピックとして配信するノード
+	\item pointcloud\_to\_laserscan: 3D LiDARのスキャンデータを2次元に圧縮してトピックとして配信するノード
 \end{itemize}
 と, 自己位置推定とナビゲーションに関係するもの: 
 \begin{itemize}

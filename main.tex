@@ -100,10 +100,11 @@ Raspberry Pi Catの外装を大型化することで,
 %\end{figure}
 
 
-計算機は, ノートPCとRaspberry Piの2台を搭載している. 
-ノートPCで, ナビゲーションを行い, 
-Raspberry Piで車体の制御を行っている. 
-各ノートPCの諸元を表\ref{table:laptop}に示す. 
+計算機は, 各チームのロボットとも
+ノートPCとRaspberry Piの2台を搭載している. 
+Raspberry Piでモータの制御など低レイヤーの処理を行い, 
+上位レベルの処理はノートPCが担う. 
+ノートPCの諸元を表\ref{table:laptop}に示す. 
 
 \begin{table}[H]
   \centering
@@ -114,7 +115,8 @@ Raspberry Piで車体の制御を行っている.
     \hline
     チーム   & CPU & RAM\\ 
     \hline
-    むぎまる & AMD Ryzen 5 5600h with radeon graphics & 16GB \\
+    むぎまる & AMD Ryzen 5 5600h with radeon graphics & 16GB \\ 
+		  %@@@↑こっちは®とかつけないの？
     \hline
     きなこ   & 12th Gen Intel® Core™ i7-12700H  & 32GB \\
     \hline
@@ -122,13 +124,13 @@ Raspberry Piで車体の制御を行っている.
 \end{table}
 
 センサ構成としては, 両チームともに，
-3D LiDAR（Livox Mid-360）と
-Raspberry Pi Catに元から搭載されているエンコーダを使用している．
-むぎまるチームはさらに,アールティ社の 
+Raspberry Pi Cat標準のエンコーダと, 
+3D LiDAR（Livox Mid-360）を使用している. 
+むぎまるチームはさらに, アールティ社の 
 IMUセンサモジュール（RT-USB-9axisIMU2\cite{RTshopIMU}）を使用している．
 
-ソフトウェアについては, 
-2チームともROS 2\cite{ROS 2}をベースに構築した. 
+ソフトウェアは, 
+両チームともROS 2\cite{ROS 2}をベースに構築した. 
 ソフトウェアの詳細については, 
 次節以降で説明する. 
 

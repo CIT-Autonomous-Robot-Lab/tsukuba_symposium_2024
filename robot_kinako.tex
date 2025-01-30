@@ -28,21 +28,17 @@ emcl2\_ros2に手を入れた.
 システムの開発のために以下の2つのパッケージを作成した. 
 
 \begin{itemize}
-  \item \textbf{map\_manager}
+  \item map\_manager: 複数の2次元マップと高さ範囲のパラメータを管理
     \begin{itemize}
-      \item 複数の2次元マップと高さ範囲のパラメータを管理
       \item ロボットが指定した領域に進入すると, その領域に最適化された2次元マップと高さパラメータを提供
     \end{itemize}
-  \item \textbf{pointcloud\_to\_dual\_scan}
-    \begin{itemize}
-      \item 3D LiDARのスキャンデータから2種類の2次元スキャンデータを生成
+  \item pointcloud\_to\_dual\_scan: 3D LiDARのスキャンデータから2種類の2次元スキャンデータを生成
         \begin{itemize}
           \item 障害物回避用のスキャンデータ
           \item 自己位置推定用のスキャンデータ（map\_managerの指定する高さ範囲に基づく）
         \end{itemize}
-    \end{itemize}
 \end{itemize}
-
+%@@@ここは絶対に空行をあけないこと！
 map\_managerは, 事前に作成した複数の2次元占有格子地図を保持している. 
 これらの地図は, 3D LiDARとIMUを統合したSLAM技術であるGLIM\cite{glim}を用いて作成した3次元マップから, 必要な高さ領域を抽出して変換したものである. 
 

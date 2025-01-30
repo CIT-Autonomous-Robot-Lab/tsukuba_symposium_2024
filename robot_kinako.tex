@@ -35,7 +35,7 @@ emcl2\_ros2に手を入れた.
     \end{itemize}
   \item \textbf{pointcloud\_to\_dual\_scan}
     \begin{itemize}
-      \item 3D LiDARの点群データから2種類の2次元スキャンデータを生成
+      \item 3D LiDARのスキャンデータから2種類の2次元スキャンデータを生成
         \begin{itemize}
           \item 障害物回避用のスキャンデータ
           \item 自己位置推定用のスキャンデータ（map\_managerの指定する高さ範囲に基づく）
@@ -44,7 +44,7 @@ emcl2\_ros2に手を入れた.
 \end{itemize}
 
 map\_managerは, 事前に作成した複数の2次元占有格子地図を保持している. 
-これらの地図は, 3D LiDARとIMUを統合したSLAM技術であるGLIMを用いて作成した3次元マップから, 必要な高さ領域を抽出して変換したものである. 
+これらの地図は, 3D LiDARとIMUを統合したSLAM技術であるGLIM\cite{glim}を用いて作成した3次元マップから, 必要な高さ領域を抽出して変換したものである. 
 
 \subsubsection{システム統合}
 図\ref{fig:kinako_system}に示すように, 3D LiDARから取得したスキャンデータはpointcloud\_to\_dual\_scanで処理され, 2種類の2次元スキャンデータに変換される. 

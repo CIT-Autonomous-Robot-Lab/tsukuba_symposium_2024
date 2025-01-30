@@ -70,11 +70,11 @@ emcl2\_ros2は, パラメータ以外をデフォルトの状態で使用した.
 またこのノードには, 走行する環境の地図が必要となり, 
 その作成にはROS 2標準のSLAMパッケージである
 slam\_toolbox\cite{slam_toolbox}を使用した. 
-navigation2における大域計画と局所計画のアルゴリズムにはそれぞれ, 
-ダイクストラ\cite{dijkstra}とDWB（Dynamic Window Approach\cite{dwa}の評価関数を拡張したアルゴリズム）を使用した. 
+navigation2のグローバルプランナーとローカルプランナーではそれぞれ, 
+ダイクストラ\cite{dijkstra}とDWB（dynamic window approach\cite{dwa}の
+評価関数を拡張したアルゴリズム）を経路計画のアルゴリズムとして使用した. 
 これらはnavigation2でデフォルトで設定されているものである. 
 %@@@できれば大域計画と局所計画にどのアルゴリズム（or ノード）をつかったかも表記を
-
 
 \begin{figure}[h]
   \begin{center}
